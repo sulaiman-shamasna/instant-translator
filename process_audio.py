@@ -20,7 +20,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Initialize OpenAI client
-openai.api_key = os.getenv("OPENAI_API_KEY")
+client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 class ConnectionManager:
     def __init__(self):
@@ -101,7 +101,7 @@ async def transcribe_audio(audio_data: bytes) -> str:
         
         # Transcribe using Whisper
         response = await asyncio.to_thread(
-            openai.Audio.transcribe,
+            client.audio.transcriptions.create,
             model="whisper-1",
             file=audio_file,
             language="en"  # You can make this configurable
@@ -121,7 +121,7 @@ async def translate_text(text: str, target_language: str = "Spanish") -> str:
         prompt = f"Translate the following text to {target_language}. Only return the translation, no additional text:\n\n{text}"
         
         response = await asyncio.to_thread(
-            openai.ChatCompletion.create,
+            client.chat.completions.create,
             model="gpt-3.5-turbo",
             messages=[
                 {"role": "user", "content": prompt}

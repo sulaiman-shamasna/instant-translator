@@ -16,7 +16,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 class AudioTranslatorClient:
-    def __init__(self, websocket_url="ws://localhost:8000/audio"):
+    def __init__(self, websocket_url="ws://localhost:8010/audio"):
         self.websocket_url = websocket_url
         self.websocket = None
         self.is_recording = False
@@ -42,10 +42,14 @@ class AudioTranslatorClient:
     async def connect_to_server(self):
         """Connect to the WebSocket server"""
         try:
+            print(f"🔄 Connecting to server at {self.websocket_url}...")
             self.websocket = await websockets.connect(self.websocket_url)
+            print("✅ Connected to translation server successfully!")
             logger.info("Connected to translation server")
             return True
         except Exception as e:
+            print(f"❌ Failed to connect to server: {e}")
+            print("💡 Make sure the server is running on the correct port (8010)")
             logger.error(f"Failed to connect to server: {e}")
             return False
     
@@ -138,6 +142,8 @@ class AudioTranslatorClient:
                 channels=1,
                 dtype=np.float32
             ):
+                print("🎤 Audio recording started. Speak into your microphone...")
+                print("⏹️  Press Ctrl+C to stop recording")
                 logger.info("Audio recording started. Speak into your microphone...")
                 logger.info("Press Ctrl+C to stop recording")
                 
