@@ -1,4 +1,9 @@
 websockets
 sounddevice
 numpy
+fastapi
+uvicorn
+openai
+python-dotenv
+asyncio
 
