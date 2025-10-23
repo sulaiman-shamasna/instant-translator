@@ -12,8 +12,6 @@ A real-time audio translation application that captures speech, transcribes it u
 - **Configurable**: Easy to customize languages, audio settings, and server configuration
 - **Robust Error Handling**: Comprehensive logging and graceful error recovery
 
-### Quick Start
-
 ### Prerequisites
 
 - Python 3.10 or higher
