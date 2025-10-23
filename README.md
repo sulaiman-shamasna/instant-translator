@@ -12,7 +12,7 @@ A real-time audio translation application that captures speech, transcribes it u
 - **Configurable**: Easy to customize languages, audio settings, and server configuration
 - **Robust Error Handling**: Comprehensive logging and graceful error recovery
 
-## 🚀 Quick Start
+### Quick Start
 
 ### Prerequisites
 
@@ -102,7 +102,7 @@ You can modify the translation language in `process_audio.py`:
 translation = await translate_text(transcription, target_language="French")
 ```
 
-## 📁 Project Structure
+### Project Structure
 
 ```
 instant-translator/
